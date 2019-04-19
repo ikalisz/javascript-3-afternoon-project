@@ -21,8 +21,11 @@ const mixedNumbers = [6,3,1,7,5,2,6,8,9,4,2,7,9,3,1,8,4,3];
 */
 
 //Code Here
-let evenNumbers // = mixedNumbers.filter(/* Provide Your Callback Here */)
-
+let evenNumbers = mixedNumbers.filter(function(element, index, arr) {
+  if (element % 2 === 0) {
+    return element
+  }
+})
 
 
 ////////// PROBLEM 2 //////////
@@ -44,7 +47,10 @@ const prices = [15.00, 23.00, 78.00, 34.00, 12.00, 86.00, 12.00, 79.00, 32.00];
 */
 
 //Code Here
-let postTaxPrices // = prices.map(/* Provide Your Callback Here );
+let postTaxPrices = prices.map(function(price, i, arr) {
+  price *= 1.07
+  return price
+})
 
 
 
@@ -63,7 +69,9 @@ const populations = [8175133, 3792621, 2695598, 2100263];
 */
 
 //Code Here
-let totalPopulation //  = populations.reduce(/* Provide Your Callback Here */)
+let totalPopulation = populations.reduce(function(total, element, i, arr) {
+  return total + element
+})
 
 
 
@@ -89,7 +97,15 @@ const monstersInYourPocket = [{"monster":"Bulbabunny","CP":156},{"monster":"Bulb
 */
 
 //Code Here
-let myStrongest // = monstersInYourPocket.filter(/* Provide Your Callback Here */)
+let myStrongest = monstersInYourPocket.filter(function(element, i, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let key in element) {
+      if (element[key] > 200) {
+        return monstersInYourPocket[i]
+      }
+    }
+  }
+})
 
 
 
@@ -106,8 +122,17 @@ const orders = [{"price":15,"tax":0.09},{"price":42,"tax":0.07},{"price":56,"tax
   Use a higher order method to get all the order totals after adding in the sales tax. Your answer should be an array of numbers, one total for each order.
 */
 
-let orderTotals // Code here
-
+//loop through each obj in the array
+//make an array containing the postTax totals
+let orderTotals = orders.map(function(val, i, arr) {
+  // console.log(val)
+  let taxTotal = 1
+  for (let key in val) {
+    taxTotal *= val[key]
+  }
+  // console.log(taxTotal)
+  return taxTotal + val.price
+})
 
 
 ////////// PROBLEM 6 //////////
@@ -126,6 +151,13 @@ const purchases = [{"owner":"Barry","price":103},{"owner":"Bob","price":75},
   Use a high order method to create to get the sum of bobsTotal.
 */
 
-let bobsTotal //Code Here
+let bobsTotal = purchases.reduce(function(total, val, i, arr) {
+  for (let key in val) {
+    if (val[key] === 'Bob') {
+      return total += val.price
+    }
+  }
+  return total 
+}, 0)
 
 
