@@ -114,13 +114,10 @@ function largeNumbers({first, second, third}) {
 */
 
 function numberGroups({a, b, c}) {
-  if (a.length > b.length && c.length) {
-    return a
-  } else if (b.length > a.length && c.length) {
-    return b
-  } else if (c.length > a.length && b.length) {
-    return c
-  }
+  if (a.length > b.length && a.length > c.length) return a
+  if (b.length > c.length) return b
+  else return c
 }
 
+console.log(numberGroups({a:[1,2,3,4],b:[1,2,3,4,5,6],c:[1,2,3]}))
 
